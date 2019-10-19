@@ -115,7 +115,7 @@ Karakteristik dasar yang penting dari Full-Text Search adalah:
 		<p>Contoh 1:<br>
 		<b>SELECT * FROM article WHERE MATCH (title) AGAINST ('tutorial');</b><br>
 		Query diatas menghasilkan data pada field title yang mengandung kata "tutorial".<br>
-		<table border="0.1">
+		<table border="1">
 			<tr>
 				<td>id</td>
 				<td>title</td>
@@ -135,7 +135,7 @@ Karakteristik dasar yang penting dari Full-Text Search adalah:
 		Pencarian pada 2 field (title dan body) dapat dilakukan dengan menggunakan perintah:<br>
 		<b>SELECT * FROM article WHERE MATCH (title, body) AGAINST ('tutorial');</b><br>
 		Perintah diatas menghasilkan data sebagai berikut:<br>
-		<table border="0.1">
+		<table border="1">
 			<tr>
 				<td>id</td>
 				<td>title</td>
@@ -160,7 +160,7 @@ Karakteristik dasar yang penting dari Full-Text Search adalah:
 		<p>Contoh 4:<br>
 		<b>SELECT *, MATCH (title, body) AGAINST ('tutorial')as score FROM article WHERE MATCH (title, body) AGAINST ('tutorial');</b><br>
 		Perintah diatas menghasilkan data sebagai berikut:
-		<table border="0.1">
+		<table border="1">
 			<tr>
 				<td>id</td>
 				<td>title</td>
@@ -196,40 +196,40 @@ Karakteristik dasar yang penting dari Full-Text Search adalah:
 	<p><li><b><font color ="navy">MySQL Boolean full-text searches</font></b></li>
 		Tipe Boolean mengijinkan penggunaan operator boolean pada keyword pencarian.
 		Berikut daftar operator yang dapat digunakan adalah:
-		<table border="0.1" align="center">
-			<tr>
+		<table border="1">
+			<tr align="center">
 				<td width="25%">[non operator]</td>
 				<td width="75%">Secara default memiliki arti "atau" / "or"</td>
 			</tr>
-			<tr>
+			<tr align="center">
 				<td>+</td>
 				<td>Keyword harus terdapat pada semua hasil yang didapat</td>
 			</tr>
-			<tr>
+			<tr align="center">
 				<td>-</td>
 				<td>Keyword tidak boleh ada pada hasil yang didapat</td>
 			</tr>
-			<tr>
+			<tr align="center">
 				<td>></td>
 				<td>Keyword termasuk pada hasil yang didapat dengan urutan berdasar ranking secara <i>increase</i></td>
 			</tr>
-			<tr>
+			<tr align="center">
 				<td><</td>
 				<td>Keyword termasuk pada hasil yang didapat dengan urutan berdasar ranking secara <i>decrease</i></td>
 			</tr>
-			<tr>
+			<tr align="center">
 				<td>()</td>
 				<td>Digunakan untuk melakukan <i>grouping</i>/pengelompokan dan dapat menambahkan operator lain untuk meningkatkan relevansi hasil pencarian</td>
 			</tr>
-			<tr>
+			<tr align="center">
 				<td>~</td>
 				<td>Berfungsi sebagai operator <i>negasi</i>,jika sebuah <i>keyword</i> diberikan tanda ~, mengakibatkan relevansi/score minus</td>
 			</tr>
-			<tr>
+			<tr align="center">
 				<td>*</td>
 				<td>Merupakan operator <i>wildcard</i></td>
 			</tr>
-			<tr>
+			<tr align="center">
 				<td>""</td>
 				<td>Digunakan pada awal dan akhir keyword yang terdiri dari dua kata atau lebih</td>
 			</tr>
@@ -237,7 +237,7 @@ Karakteristik dasar yang penting dari Full-Text Search adalah:
 		<p>Contoh 1:<br>
 		<b>SELECT * FROM article WHERE MATCH (title, body) AGAINST ('+mysql -database'IN BOOLEAN MODE);</b><br>
 		Perintah diatas menghasilkan data sebagai berikut :<br>
-		<table border="0.1">
+		<table border="1">
 			<tr>
 				<td>id</td>
 				<td>title</td>
@@ -269,7 +269,7 @@ Karakteristik dasar yang penting dari Full-Text Search adalah:
 		<p>Contoh 2 :<br>
 		<b>SELECT * FROM article WHERE MATCH (title, body) AGAINST ('tutor*' IN BOOLEAN MODE);</b></br>
 		Perintah diatas menghasilkan data sebagai berikut :
-		<table border="0.1">
+		<table border="1">
 			<tr>
 				<td>id</td>
 				<td>title</td>
@@ -291,7 +291,7 @@ Karakteristik dasar yang penting dari Full-Text Search adalah:
 		<p>Contoh 3 :<br>
 		<b>SELECT * FROM article WHERE MATCH (title, body) AGAINST ('+mysql +(>tutorial database)' IN BOOLEAN MODE);<br>
 		</b>Perintah diatas menghasilkan data sebagai berikut :
-		<table border="0.1">
+		<table border="1">
 			<tr>
 				<td>id</td>
 				<td>title</td>
@@ -320,7 +320,7 @@ Karakteristik dasar yang penting dari Full-Text Search adalah:
 		<p>Contoh 4 :<br>
 		<b>SELECT * FROM article WHERE MATCH (title, body) AGAINST ('"mysql tutorial"' IN BOOLEAN MODE);</b><br>
 		Perintah diatas menghasilkan data sebagai berikut :
-		<table border="0.1">
+		<table border="1">
 			<tr>
 				<td>id</td>
 				<td>title</td>
