@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>L200170014</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link href="css/clean-blog.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Story of Arlin</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="full-text.html">Recently Post</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('img/about-bg.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Full-Text Searching</h1>
+            <h2 class="subheading">Full-Text Searching adalah ...</h2>
+            <span class="meta">Posted by
+              <a href="#">Story of Arlin</a>
+              on October 19, 2019</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <p>Full-Text Search adalah salah satu fungsi yang terdapat dalam database MySQL yang dapat digunakan untuk mengoptimalkan proses dan hasil pencarian.
+Full-Text Search tidak hanya membantu dalam hal kecepatan tapi juga eksibilitas dan ruang lingkup pencarian yang mengagumkan.</p>
+Karakteristik dasar yang penting dari Full-Text Search adalah:
+<ol>
+	<li>Full-Text Search ideal digunakan untuk database berukuran besar yang mengandung ribuan atau bahkan jutaan record.
+		Hasilnya dapat diurutkan (ranking) berdasarkan relevansi, yang direpresentasikan oleh angka desimal.</li>
+	<li>Full-Text Search akan mengabaikan kata yang terlalu umum (noise words/stop words)dan tidak dibutuhkan  dalam pencarian, karena itu akan dihapus dari query.
+		Misalnya kata "and", "as". Hal ini dimaksudkan untuk mendapatkan hasil yang lebih akurat.</li>
+	<li>Full-Text Search dapat dilakukan pada mode boolean, yag mencari berdasarkan kriteria AND atau OR.
+		Misalnya pada keyword pencarian "+Komputer+Mouse", maka akan mengembalikan record yang mengandung kata "Komputer" dan "Mouse".</li>
+	<li>Keyword adalah case-insensitive. Artinya, huruf besar dan kecil danggap sama.
+		"MoBiL" sama dengan"MOBIL" ataupun "mobil".</li>
+</ol>
+
+<ul>
+	<p><li><b><font color = "navy">Full-Text Index</font></b></li>
+		Full-Text Index adalah sebuah fitur yang menggunakan index database yang berisi teks. Analoginya persis dengan index buku. 
+		Dengan fitur ini, kita bisa membuat mesin pencari sederhana yang mencari berdasarkan index yang disimpan di kolom yang telah di-index dengan FULL TEXT INDEX. 
+		Anda dapat mengaktifkan INDEX ini di PHPMyAdmin dengan mencentang check box Full Text Index.
+		Atau jika dengan command line, seperti ini:
+		<ul type="square">
+			<li>Membuat Full-Text Index dengan menggunakan statement "CREATE TABLE":</li>
+				<b>CREATE TABLE table_name(<br>
+					column_list,<br>
+					...,<br>
+					FULLTEXT (column1,column2,..)<br>
+					);</b><br>
+			<li>Membuat Full-Text Index dengan menggunakan statement "ALTER TABLE":</li>
+				<b>ALTER TABLE table_name <br>
+					ADD FULLTEXT(column_name1, column_name2,…)</b><br>
+			<li>Membuat Full-Text Index dengan menggunakan statement "CREATE INDEX":</li>
+				<b>CREATE FULLTEXT INDEX index_name <br>
+					ON table_name(idx_column_name,...)</b><br>
+			<li>Menghapus Full-Text Index</li>
+				<b>ALTER TABLE table_name <br>
+					DROP INDEX index_name;</b>
+		</ul>
+</p>
+	<p><li><b><font color="navy">MySQL Natural Language Full-Text Searches</font></b></li>
+		Berikut ini contoh penggunaan Full-Text Searching tipe Natural Language:<br>
+		<p>Contoh 1:<br>
+		<b>SELECT * FROM article WHERE MATCH (title) AGAINST ('tutorial');</b><br>
+		Query diatas menghasilkan data pada field title yang mengandung kata "tutorial".<br>
+		<table border="0.1">
+			<tr>
+				<td>id</td>
+				<td>title</td>
+				<td>body</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>PHP & Mysql : Tutorial Dasar</td>
+				<td>Pada tutorial kali ini,kita akan mencoba melakuka...</td>
+			</tr>
+		</table></p>
+		<p>Contoh 2:<br>
+		<b>SELECT * FROM article WHERE MATCH (title) AGAINST ('tutor');</b><br>
+		Perintah diatas tidak akan menghasilkan data, karena pencarian "tutor" tidak sama dengan pencarian "tutorial".<br>
+		</p>
+		<p>Contoh 3:<br>
+		Pencarian pada 2 field (title dan body) dapat dilakukan dengan menggunakan perintah:<br>
+		<b>SELECT * FROM article WHERE MATCH (title, body) AGAINST ('tutorial');</b><br>
+		Perintah diatas menghasilkan data sebagai berikut:<br>
+		<table border="0.1">
+			<tr>
+				<td>id</td>
+				<td>title</td>
+				<td>body</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>PHP & Mysql : Tutorial Dasar</td>
+				<td>Pada tutorial kali ini,kita akan mencoba melakuka...</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>Mysql</td>
+				<td>Tutorial penggunaan database masa kini...</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>MySQL - Pengenalan</td>
+				<td>tutorial MySQL di situs ini memang buat kamu-kamu...</td>
+			</tr>
+		</table></p>
+		<p>Contoh 4:<br>
+		<b>SELECT *, MATCH (title, body) AGAINST ('tutorial')as score FROM article WHERE MATCH (title, body) AGAINST ('tutorial');</b><br>
+		Perintah diatas menghasilkan data sebagai berikut:
+		<table border="0.1">
+			<tr>
+				<td>id</td>
+				<td>title</td>
+				<td>body</td>
+				<td>Score</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>PHP & Mysql : Tutorial Dasar</td>
+				<td>Pada tutorial kali ini,kita akan mencoba melakuka...</td>
+				<td>0.40983861684799</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>Mysql</td>
+				<td>Tutorial penggunaan database masa kini...</td>
+				<td>0.26911327242851</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>MySQL - Pengenalan</td>
+				<td>tutorial MySQL di situs ini memang buat kamu-kamu...</td>
+				<td>0.22223679721355</td>
+			</tr>
+		</table>
+		Data yang diperoleh diurutkan berdasarkan urutan skor relevansi pencarian.<br></p>
+		<p>Contoh 5:
+		<b>SELECT * FROM article WHERE MATCH (title) AGAINST ('mysql');</b></br>
+		Perintah diatas tidak menghasilkan data karena MySQL mengimplementasikan “Stopword” atau “Skipword” untuk setiap hasil pencarian yang tampil pada 50% atau lebih dari total seluruh data.
+		Stopword adalah mekanisme untuk membatasi pencarian dengan tidak menampilkan hasil pencarian berdasarkan daftar atau list kata-kata yang sering digunakan dalam bahasa inggris. 
+		Pengaturan Stopword dapat dilihat pada file konfigurasi MySQL (my.ini).</p>
+</p>
+	<p><li><b><font color ="navy">MySQL Boolean full-text searches</font></b></li>
+		Tipe Boolean mengijinkan penggunaan operator boolean pada keyword pencarian.
+		Berikut daftar operator yang dapat digunakan adalah:
+		<table border="0.1" align="center">
+			<tr>
+				<td width="25%">[non operator]</td>
+				<td width="75%">Secara default memiliki arti "atau" / "or"</td>
+			</tr>
+			<tr>
+				<td>+</td>
+				<td>Keyword harus terdapat pada semua hasil yang didapat</td>
+			</tr>
+			<tr>
+				<td>-</td>
+				<td>Keyword tidak boleh ada pada hasil yang didapat</td>
+			</tr>
+			<tr>
+				<td>></td>
+				<td>Keyword termasuk pada hasil yang didapat dengan urutan berdasar ranking secara <i>increase</i></td>
+			</tr>
+			<tr>
+				<td><</td>
+				<td>Keyword termasuk pada hasil yang didapat dengan urutan berdasar ranking secara <i>decrease</i></td>
+			</tr>
+			<tr>
+				<td>()</td>
+				<td>Digunakan untuk melakukan <i>grouping</i>/pengelompokan dan dapat menambahkan operator lain untuk meningkatkan relevansi hasil pencarian</td>
+			</tr>
+			<tr>
+				<td>~</td>
+				<td>Berfungsi sebagai operator <i>negasi</i>,jika sebuah <i>keyword</i> diberikan tanda ~, mengakibatkan relevansi/score minus</td>
+			</tr>
+			<tr>
+				<td>*</td>
+				<td>Merupakan operator <i>wildcard</i></td>
+			</tr>
+			<tr>
+				<td>""</td>
+				<td>Digunakan pada awal dan akhir keyword yang terdiri dari dua kata atau lebih</td>
+			</tr>
+		</table>
+		<p>Contoh 1:<br>
+		<b>SELECT * FROM article WHERE MATCH (title, body) AGAINST ('+mysql -database'IN BOOLEAN MODE);</b><br>
+		Perintah diatas menghasilkan data sebagai berikut :<br>
+		<table border="0.1">
+			<tr>
+				<td>id</td>
+				<td>title</td>
+				<td>body</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>How To Use MySQL Well</td>
+				<td>after you went through a...</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>Optimizing MySQL</td>
+				<td>In this tutorial we will show...</td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>1001 MySQL Tricks</td>
+				<td>1. Never run mysqld as root. 2. ...</td>
+			</tr>
+			<tr>
+				<td>6</td>
+				<td>MySQL Security</td>
+				<td>When configured properly, MySQL ...</td>
+			</tr>
+		</table>
+		Hasil yang diperoleh harus mengandung kata mysql dan tidak boleh mengandung kata database pada field title dan body.<br>
+		</p>
+		<p>Contoh 2 :<br>
+		<b>SELECT * FROM article WHERE MATCH (title, body) AGAINST ('tutor*' IN BOOLEAN MODE);</b></br>
+		Perintah diatas menghasilkan data sebagai berikut :
+		<table border="0.1">
+			<tr>
+				<td>id</td>
+				<td>title</td>
+				<td>body</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>MySQL Tutorial</td>
+				<td>DBMS stands for DataBase...</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>Optimizing MySQL</td>
+				<td>In this tutorial we will show...</td>
+			</tr>
+		</table>
+		Penambahan asterisk (*) pada awal atau akhir keyword berfungsi seperti perintah LIKE ‘tutor%’ .<br>
+		</p>
+		<p>Contoh 3 :<br>
+		<b>SELECT * FROM article WHERE MATCH (title, body) AGAINST ('+mysql +(>tutorial database)' IN BOOLEAN MODE);<br>
+		</b>Perintah diatas menghasilkan data sebagai berikut :
+		<table border="0.1">
+			<tr>
+				<td>id</td>
+				<td>title</td>
+				<td>body</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>MySQL Tutorial</td>
+				<td>DBMS stands for DataBase...</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>Optimizing MySQL</td>
+				<td>In this tutorial we will show...</td>
+			</tr>
+			<tr>
+				<td>5</td>
+				<td>MySQL vs. YourSQL</td>
+				<td>In the following database comparison...</td>
+			</tr>
+		</table>
+		Penggunaan  operator  >  dan  <  menghasilkan  data  yang  mengandung  kata  mysql  dan
+		tutorial memiliki score relevansi yang lebih tinggi dibandingkan data yang mengandung
+		kata mysql dan database, dan seluruh hasil harus mengandung kata mysql+tutorial atau
+		database. </p>
+		<p>Contoh 4 :<br>
+		<b>SELECT * FROM article WHERE MATCH (title, body) AGAINST ('"mysql tutorial"' IN BOOLEAN MODE);</b><br>
+		Perintah diatas menghasilkan data sebagai berikut :
+		<table border="0.1">
+			<tr>
+				<td>id</td>
+				<td>title</td>
+				<td>body</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>MySQL Tutorial</td>
+				<td>DBMS stands for DataBase...</td>
+			</tr>
+		</table>
+		Hasil pencarian harus mengandung kata “mysql“ yang kemudian diikuti kata “tutorial“.<br></p>
+		</p>
+
+	<p><li><b><font color="navy">MySQL Query Expansion</font></b></li>
+	Berikut ini adalah cara membuat MySQL Query Expansion:<br>
+	<b>SELECT column1, column2<br>
+		FROM table1<br>
+		WHERE MATCH(column1,column2) <br>
+		AGAINST('keyword',WITH QUERY EXPANSION);</b></p>
+
+	<p><li><b><font color="navy">MySQL ngram full-text parser</font></b></li>
+	Berikut ini adalah contoh sintak MySQL ngram full-text parser:<br>
+	<b>INSTALL PLUGIN bigram SONAME 'libftbigram.so';<br>
+	ALTER TABLE `bhl_title` ADD FULLTEXT (`ShortTitle`) WITH PARSER bigram;<br>
+	SELECT TitleID, ShortTitle, MATCH(ShortTitle) AGAINST('Bull U S Natl Museum')<br>
+	AS score FROM bhl_title<br>
+	WHERE MATCH(ShortTitle) AGAINST('Bull U S Natl Museum') LIMIT 5;</b></p>
+</ul>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+          <p class="copyright text-muted">Copyright &copy; L200170014</p>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/clean-blog.min.js"></script>
+
+</body>
+
+</html>
